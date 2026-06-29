@@ -19,8 +19,8 @@ export function AlycLogo({
       alt={`Logo de ${name}`}
       width={size}
       height={size}
-      className={`rounded-lg bg-zinc-100 object-contain ${className}`}
-      loading="lazy"
+      className={`shrink-0 rounded-lg bg-zinc-100 object-contain ${className}`}
+      loading="eager"
     />
   );
 }

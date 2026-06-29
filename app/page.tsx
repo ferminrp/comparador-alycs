@@ -31,18 +31,12 @@ export default function Home() {
             Brokers disponibles
           </h2>
           <div className="overflow-x-auto rounded-2xl border border-zinc-200 bg-white shadow-sm">
-            <table className="w-full min-w-[560px] text-sm">
+            <table className="w-full min-w-[480px] text-sm">
               <thead>
                 <tr className="border-b border-zinc-200 bg-zinc-50">
                   <th
                     scope="col"
-                    className="w-12 px-4 py-2.5 text-left font-medium text-zinc-500"
-                  >
-                    <span className="sr-only">Logo</span>
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-3 py-2.5 text-left font-medium text-zinc-700"
+                    className="px-4 py-2.5 text-left font-medium text-zinc-700"
                   >
                     Nombre
                   </th>
@@ -64,29 +58,22 @@ export default function Home() {
                 {alycs.map((alyc) => (
                   <tr key={alyc.id} className="bg-white">
                     <td className="px-4 py-2.5">
-                      <AlycLogo
-                        domain={alyc.domain}
-                        name={alyc.name}
-                        size={28}
-                      />
-                    </td>
-                    <td className="px-3 py-2.5">
-                      <div className="flex min-w-0 flex-wrap items-center gap-2">
-                        <span className="font-medium text-zinc-900">
-                          {alyc.name}
-                        </span>
-                        <span className="rounded-full bg-zinc-100 px-2 py-0.5 text-xs font-medium text-zinc-600">
-                          {alyc.shortName}
-                        </span>
+                      <div className="flex min-w-0 items-center gap-2.5">
+                        <AlycLogo
+                          domain={alyc.domain}
+                          name={alyc.name}
+                          size={28}
+                          className="shrink-0"
+                        />
+                        <div className="flex min-w-0 flex-wrap items-center gap-2">
+                          <span className="font-medium text-zinc-900">
+                            {alyc.name}
+                          </span>
+                          <span className="rounded-full bg-zinc-100 px-2 py-0.5 text-xs font-medium text-zinc-600">
+                            {alyc.shortName}
+                          </span>
+                        </div>
                       </div>
-                      {alyc.notes ? (
-                        <p
-                          className="mt-0.5 truncate text-xs text-zinc-500 sm:hidden"
-                          title={alyc.notes}
-                        >
-                          {alyc.notes}
-                        </p>
-                      ) : null}
                     </td>
                     <td className="hidden max-w-xs px-3 py-2.5 text-zinc-600 sm:table-cell">
                       {alyc.notes ? (
