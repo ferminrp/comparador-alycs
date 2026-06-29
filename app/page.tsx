@@ -1,11 +1,15 @@
 import { AlycLogo } from "@/components/AlycLogo";
 import { ComparisonTable } from "@/components/ComparisonTable";
+import { SiteFooter } from "@/components/SiteFooter";
+import { SiteHeader } from "@/components/SiteHeader";
 import { alycs } from "@/lib/alycs";
 
 export default function Home() {
   return (
     <div className="flex flex-1 flex-col">
-      <header className="border-b border-zinc-200 bg-white">
+      <SiteHeader />
+
+      <div className="border-b border-zinc-200 bg-white">
         <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
           <p className="text-sm font-medium uppercase tracking-wide text-emerald-700">
             Argentina
@@ -18,7 +22,7 @@ export default function Home() {
             comparación de comisiones por instrumento.
           </p>
         </div>
-      </header>
+      </div>
 
       <main className="mx-auto w-full max-w-5xl flex-1 space-y-12 px-4 py-8 sm:px-6">
         <section>
@@ -84,12 +88,7 @@ export default function Home() {
         <ComparisonTable />
       </main>
 
-      <footer className="border-t border-zinc-200 bg-white">
-        <div className="mx-auto max-w-5xl px-4 py-6 text-sm text-zinc-500 sm:px-6">
-          Los tarifarios son publicados por cada ALYC y pueden cambiar sin
-          previo aviso. Verificá siempre la fuente oficial antes de operar.
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }
