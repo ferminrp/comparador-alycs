@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Comparador de ALYCs | Comisiones en Argentina",
+  title: "Comparador de comisiones ALYC | Argentina",
   description:
-    "Compará comisiones y tarifarios de los principales agentes de liquidación y compensación (ALYCs) de Argentina.",
+    "Compará las comisiones y tarifarios de los principales brokers (ALYC) de Argentina.",
 };
 
 export default function RootLayout({
@@ -28,7 +28,7 @@ export default function RootLayout({
       lang="es"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-slate-50 text-slate-900">
+      <body className="min-h-full flex flex-col bg-zinc-50 text-zinc-900">
         {children}
       </body>
     </html>

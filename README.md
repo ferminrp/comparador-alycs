@@ -1,55 +1,37 @@
-# Comparador de ALYCs
+# Comparador de comisiones ALYC
 
-Sitio estático para comparar comisiones y tarifarios de agentes de liquidación y compensación (ALYCs) en Argentina.
+Sitio estático para comparar comisiones de brokers (ALYC) en Argentina.
 
-## Objetivo
+## ALYCs incluidas
 
-Centralizar enlaces a los tarifarios oficiales de los principales brokers argentinos y, en futuras versiones, permitir comparar comisiones por tipo de operación e instrumento.
+| Broker | Tarifario |
+| --- | --- |
+| Portfolio Personal Inversiones (PPI) | [portfoliopersonal.com/Contenido/comisiones](https://www.portfoliopersonal.com/Contenido/comisiones) |
+| Balanz | [balanz.com/comisiones](https://www.balanz.com/comisiones) |
+| Cocos Capital | [cocos.capital/tarifario](https://cocos.capital/tarifario) |
+| IEB+ (Invertir en Bolsa) | [PDF de aranceles](https://www.grupoieb.com.ar/wp-content/uploads/2025/01/ARANCELES-2024-octubre.pdf) |
+| Inviu | [PDF de aranceles](https://s3.amazonaws.com/cms-imgs.dev.inviu.com-ar/Aranceles_Comisiones_202403_ARG_8987c90001.pdf) |
+| IOL (InvertirOnline) | [invertironline.com/tarifas](https://www.invertironline.com/tarifas) |
 
-## ALYCs incluidos
-
-- Portfolio Personal Inversiones (PPI)
-- Balanz
-- Cocos Capital
-- IEB+
-- Inviu
-- IOL (InvertirOnline)
-
-## Stack
-
-- [Next.js](https://nextjs.org/) (App Router)
-- TypeScript
-- Tailwind CSS
-- Export estático (`output: 'export'`) para despliegue económico en Vercel u otro hosting estático
-
-## Desarrollo local
+## Desarrollo
 
 ```bash
 npm install
 npm run dev
 ```
 
-Abrí [http://localhost:3000](http://localhost:3000).
-
 ## Build estático
+
+El proyecto usa `output: "export"` para generar HTML estático y minimizar costos en Vercel.
 
 ```bash
 npm run build
 ```
 
-El sitio exportado queda en la carpeta `out/`.
-
-## Estructura
-
-- `lib/constants/alycs.ts` — datos de cada ALYC (nombre, URL del tarifario, placeholders)
-- `app/page.tsx` — landing con listado de brokers
+La salida queda en `out/`.
 
 ## Próximos pasos
 
-- Cargar comisiones por instrumento (acciones, CEDEARs, bonos, dólar MEP, etc.)
+- Extraer y normalizar comisiones por instrumento (acciones, CEDEARs, bonos, etc.)
 - Tabla comparativa filtrable
-- Actualización periódica de tarifarios
-
-## Aviso
-
-Los tarifarios pueden cambiar. Siempre consultá la fuente oficial de cada ALYC antes de invertir.
+- Historial de cambios de tarifarios
