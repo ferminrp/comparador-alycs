@@ -1,3 +1,4 @@
+import { AlycLogo } from "@/components/AlycLogo";
 import { alycs } from "@/lib/alycs";
 
 export default function Home() {
@@ -12,8 +13,8 @@ export default function Home() {
             Comparador de comisiones ALYC
           </h1>
           <p className="mt-3 max-w-2xl text-base leading-7 text-zinc-600">
-            Listado inicial de brokers con links a sus tarifarios oficiales.
-            Próximamente: comparación detallada de comisiones por instrumento.
+            Listado de brokers con links a sus tarifarios oficiales y
+            comparación de comisiones por instrumento.
           </p>
         </div>
       </header>
@@ -27,13 +28,22 @@ export default function Home() {
             >
               <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                 <div className="min-w-0 flex-1">
-                  <div className="flex items-center gap-2">
-                    <h2 className="text-lg font-semibold text-zinc-900">
-                      {alyc.name}
-                    </h2>
-                    <span className="rounded-full bg-zinc-100 px-2.5 py-0.5 text-xs font-medium text-zinc-600">
-                      {alyc.shortName}
-                    </span>
+                  <div className="flex items-center gap-3">
+                    <AlycLogo
+                      domain={alyc.domain}
+                      name={alyc.name}
+                      size={36}
+                    />
+                    <div className="min-w-0">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <h2 className="text-lg font-semibold text-zinc-900">
+                          {alyc.name}
+                        </h2>
+                        <span className="rounded-full bg-zinc-100 px-2.5 py-0.5 text-xs font-medium text-zinc-600">
+                          {alyc.shortName}
+                        </span>
+                      </div>
+                    </div>
                   </div>
                   {alyc.notes ? (
                     <p className="mt-2 text-sm leading-6 text-zinc-600">
