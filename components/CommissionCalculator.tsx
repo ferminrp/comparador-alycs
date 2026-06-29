@@ -208,9 +208,9 @@ export function CommissionCalculator() {
 
       <p className="mt-4 text-xs leading-5 text-zinc-500">
         Estimación sin IVA ni derechos de mercado. Las cauciones (TNA) requieren
-        plazo en días para calcular el costo exacto. La suscripción mensual
-        (p. ej. IEB+ Plan Investor) no se incluye en esta calculadora por
-        operación.
+        plazo en días para calcular el costo exacto. Cuando un ALYC tiene
+        suscripción mensual fija, se muestra junto al costo por operación (p.
+        ej. IEB+ Plan Investor).
       </p>
     </section>
   );

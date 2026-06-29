@@ -9,12 +9,62 @@ export type CommissionCalculation = {
   notApplicable: boolean;
   minimumApplied: boolean;
   isCheapest: boolean;
+  tradeCommission: number | null;
+  monthlyFee: number | null;
 };
+
+function getMonthlySubscription(
+  rate: CommissionRate | null | undefined,
+): CommissionRate | null {
+  if (!rate || rate.unit !== "fixed" || rate.rate <= 0) return null;
+  return rate;
+}
+
+function applyMonthlySubscription(
+  trade: Omit<
+    CommissionCalculation,
+    "alycId" | "isCheapest" | "tradeCommission" | "monthlyFee"
+  >,
+  monthlyRate: CommissionRate | null,
+): Omit<CommissionCalculation, "alycId" | "isCheapest"> {
+  const tradeCommission = Number.isFinite(trade.sortValue)
+    ? trade.sortValue
+    : null;
+
+  if (!monthlyRate) {
+    return {
+      ...trade,
+      tradeCommission,
+      monthlyFee: null,
+    };
+  }
+
+  const monthlyFormatted = formatCommission(monthlyRate);
+  const formattedCommission = `${trade.formattedCommission} + ${monthlyFormatted}`;
+
+  const detailParts = [trade.detail];
+  if (monthlyRate.notes) {
+    detailParts.push(`Suscripción: ${monthlyRate.notes}`);
+  } else {
+    detailParts.push(`Suscripción mensual ${monthlyFormatted}`);
+  }
+
+  return {
+    ...trade,
+    formattedCommission,
+    detail: detailParts.join(" · "),
+    tradeCommission,
+    monthlyFee: monthlyRate.rate,
+  };
+}
 
 function calculateSingleCommission(
   amount: number,
   rate: CommissionRate | null | undefined,
-): Omit<CommissionCalculation, "alycId" | "isCheapest"> {
+): Omit<
+  CommissionCalculation,
+  "alycId" | "isCheapest" | "tradeCommission" | "monthlyFee"
+> {
   if (!rate) {
     return {
       formattedCommission: "No aplica",
@@ -85,14 +135,23 @@ export function calculateAllCommissions(
   conceptId: string,
   alycsList: Alyc[],
 ): CommissionCalculation[] {
-  const results = alycsList.map((alyc) => ({
-    alycId: alyc.id,
-    ...calculateSingleCommission(amount, alyc.commissions[conceptId]),
-  }));
+  const results = alycsList.map((alyc) => {
+    const trade = calculateSingleCommission(amount, alyc.commissions[conceptId]);
+    const monthlyRate = getMonthlySubscription(
+      alyc.commissions.suscripcionMensual,
+    );
+
+    return {
+      alycId: alyc.id,
+      ...applyMonthlySubscription(trade, monthlyRate),
+    };
+  });
 
   results.sort((a, b) => a.sortValue - b.sortValue);
 
-  const cheapestValue = results.find((r) => Number.isFinite(r.sortValue))?.sortValue;
+  const cheapestValue = results.find((r) =>
+    Number.isFinite(r.sortValue),
+  )?.sortValue;
 
   return results.map((result) => ({
     ...result,
