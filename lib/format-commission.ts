@@ -22,9 +22,10 @@ export function formatCommission(rate: CommissionRate | null): string {
   }
 
   if (rate.unit === "fixed") {
+    if (rate.rate === 0) return "—";
     const currency = rate.minimumCurrency ?? "ARS";
     const prefix = currency === "USD" ? "US$" : "$";
-    return `${prefix}${rate.rate.toLocaleString("es-AR")}`;
+    return `${prefix}${rate.rate.toLocaleString("es-AR")}/mes`;
   }
 
   let result = formatPercent(rate.rate);

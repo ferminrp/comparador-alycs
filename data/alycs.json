@@ -34,6 +34,11 @@
       "id": "dolarMep",
       "label": "Dólar MEP",
       "description": "Comisión por operaciones de dólar MEP o compra de letras en MEP."
+    },
+    {
+      "id": "suscripcionMensual",
+      "label": "Suscripción mensual",
+      "description": "Arancel fijo mensual del plan base (sin asesor)"
     }
   ],
   "alycs": [
@@ -96,7 +101,8 @@
           "notes": "Compra de letras en dólar MEP",
           "source": "tarifario",
           "lastUpdated": "2026-06-29"
-        }
+        },
+        "suscripcionMensual": null
       }
     },
     {
@@ -156,7 +162,8 @@
           "notes": "Web/app, personas humanas",
           "source": "tarifario",
           "lastUpdated": "2026-06-29"
-        }
+        },
+        "suscripcionMensual": null
       }
     },
     {
@@ -216,7 +223,8 @@
           "notes": "Compra de letras en dólar MEP",
           "source": "tarifario",
           "lastUpdated": "2026-06-29"
-        }
+        },
+        "suscripcionMensual": null
       }
     },
     {
@@ -264,7 +272,8 @@
           "source": "tarifario",
           "lastUpdated": "2026-06-29"
         },
-        "dolarMep": null
+        "dolarMep": null,
+        "suscripcionMensual": null
       }
     },
     {
@@ -324,6 +333,14 @@
           "notes": "Botonera MEP sin comisión en Plan Rookie",
           "source": "tarifario",
           "lastUpdated": "2026-06-29"
+        },
+        "suscripcionMensual": {
+          "rate": 5000,
+          "unit": "fixed",
+          "minimumCurrency": "ARS",
+          "notes": "Plan Investor, operaciones sin comisión de corretaje",
+          "source": "tarifario",
+          "lastUpdated": "2026-06-29"
         }
       }
     },
@@ -378,7 +395,8 @@
           "source": "estimado",
           "lastUpdated": "2026-06-29"
         },
-        "dolarMep": null
+        "dolarMep": null,
+        "suscripcionMensual": null
       }
     }
   ]
