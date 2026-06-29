@@ -1,4 +1,5 @@
 import { AlycLogo } from "@/components/AlycLogo";
+import { CommissionCalculator } from "@/components/CommissionCalculator";
 import { ComparisonTable } from "@/components/ComparisonTable";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -86,6 +87,8 @@ export default function Home() {
         </section>
 
         <ComparisonTable />
+
+        <CommissionCalculator />
       </main>
 
       <SiteFooter />

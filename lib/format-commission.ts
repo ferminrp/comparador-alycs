@@ -1,5 +1,13 @@
 import type { CommissionRate } from "@/lib/types";
 
+export function formatCurrency(
+  amount: number,
+  currency: "ARS" | "USD" = "ARS",
+): string {
+  const prefix = currency === "USD" ? "US$" : "$";
+  return `${prefix}${amount.toLocaleString("es-AR")}`;
+}
+
 function formatPercent(rate: number): string {
   const str = rate.toString().replace(".", ",");
   return `${str}%`;

@@ -30,8 +30,11 @@ npm run build
 
 La salida queda en `out/`.
 
+## Calculadora de comisiones
+
+Sección `#calculadora` en la home: ingresá monto e instrumento y compará la comisión estimada por operación en las 6 ALYC (ordenadas de menor a mayor costo).
+
 ## Próximos pasos
 
-- Extraer y normalizar comisiones por instrumento (acciones, CEDEARs, bonos, etc.)
-- Tabla comparativa filtrable
 - Historial de cambios de tarifarios
+- Calculadora de cauciones con plazo en días
