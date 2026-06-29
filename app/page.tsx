@@ -30,60 +30,101 @@ export default function Home() {
           <h2 className="mb-4 text-xl font-semibold text-zinc-900">
             Brokers disponibles
           </h2>
-          <ul className="space-y-4">
-            {alycs.map((alyc) => (
-              <li
-                key={alyc.id}
-                className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm"
-              >
-                <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-center gap-3">
+          <div className="overflow-x-auto rounded-2xl border border-zinc-200 bg-white shadow-sm">
+            <table className="w-full min-w-[560px] text-sm">
+              <thead>
+                <tr className="border-b border-zinc-200 bg-zinc-50">
+                  <th
+                    scope="col"
+                    className="w-12 px-4 py-2.5 text-left font-medium text-zinc-500"
+                  >
+                    <span className="sr-only">Logo</span>
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-3 py-2.5 text-left font-medium text-zinc-700"
+                  >
+                    Nombre
+                  </th>
+                  <th
+                    scope="col"
+                    className="hidden px-3 py-2.5 text-left font-medium text-zinc-700 sm:table-cell"
+                  >
+                    Notas
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-4 py-2.5 text-right font-medium text-zinc-700"
+                  >
+                    Acciones
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-zinc-200">
+                {alycs.map((alyc) => (
+                  <tr key={alyc.id} className="bg-white">
+                    <td className="px-4 py-2.5">
                       <AlycLogo
                         domain={alyc.domain}
                         name={alyc.name}
-                        size={36}
+                        size={28}
                       />
-                      <div className="min-w-0">
-                        <div className="flex flex-wrap items-center gap-2">
-                          <h3 className="text-lg font-semibold text-zinc-900">
-                            {alyc.name}
-                          </h3>
-                          <span className="rounded-full bg-zinc-100 px-2.5 py-0.5 text-xs font-medium text-zinc-600">
-                            {alyc.shortName}
-                          </span>
-                        </div>
+                    </td>
+                    <td className="px-3 py-2.5">
+                      <div className="flex min-w-0 flex-wrap items-center gap-2">
+                        <span className="font-medium text-zinc-900">
+                          {alyc.name}
+                        </span>
+                        <span className="rounded-full bg-zinc-100 px-2 py-0.5 text-xs font-medium text-zinc-600">
+                          {alyc.shortName}
+                        </span>
                       </div>
-                    </div>
-                    {alyc.notes ? (
-                      <p className="mt-2 text-sm leading-6 text-zinc-600">
-                        {alyc.notes}
-                      </p>
-                    ) : null}
-                  </div>
-
-                  <div className="flex shrink-0 flex-col gap-2 sm:items-end">
-                    <a
-                      href={alyc.tarifarioUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center rounded-xl bg-emerald-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-emerald-700"
-                    >
-                      Ver tarifario
-                    </a>
-                    <a
-                      href={alyc.websiteUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center rounded-xl border border-zinc-200 px-4 py-2 text-sm font-medium text-zinc-700 transition-colors hover:bg-zinc-50"
-                    >
-                      Sitio web
-                    </a>
-                  </div>
-                </div>
-              </li>
-            ))}
-          </ul>
+                      {alyc.notes ? (
+                        <p
+                          className="mt-0.5 truncate text-xs text-zinc-500 sm:hidden"
+                          title={alyc.notes}
+                        >
+                          {alyc.notes}
+                        </p>
+                      ) : null}
+                    </td>
+                    <td className="hidden max-w-xs px-3 py-2.5 text-zinc-600 sm:table-cell">
+                      {alyc.notes ? (
+                        <span className="line-clamp-2" title={alyc.notes}>
+                          {alyc.notes}
+                        </span>
+                      ) : (
+                        <span className="text-zinc-400">—</span>
+                      )}
+                    </td>
+                    <td className="whitespace-nowrap px-4 py-2.5 text-right">
+                      <div className="inline-flex items-center gap-2">
+                        <a
+                          href={alyc.tarifarioUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="rounded-md px-2 py-1 font-medium text-emerald-700 transition-colors hover:bg-emerald-50 hover:text-emerald-800"
+                        >
+                          Tarifario
+                        </a>
+                        <span className="text-zinc-300" aria-hidden="true">
+                          ·
+                        </span>
+                        <a
+                          href={alyc.websiteUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="rounded-md px-2 py-1 font-medium text-zinc-600 transition-colors hover:bg-zinc-50 hover:text-zinc-900"
+                        >
+                          Web
+                        </a>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </section>
 
         <ComparisonTable />
