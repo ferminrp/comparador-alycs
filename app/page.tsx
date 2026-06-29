@@ -1,6 +1,7 @@
 import { AlycLogo } from "@/components/AlycLogo";
 import { CommissionCalculator } from "@/components/CommissionCalculator";
 import { ComparisonTable } from "@/components/ComparisonTable";
+import { HeroSection } from "@/components/HeroSection";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { alycs } from "@/lib/alycs";
@@ -10,20 +11,7 @@ export default function Home() {
     <div className="flex flex-1 flex-col">
       <SiteHeader />
 
-      <div className="border-b border-zinc-200 bg-white">
-        <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
-          <p className="text-sm font-medium uppercase tracking-wide text-emerald-700">
-            Argentina
-          </p>
-          <h1 className="mt-2 text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl">
-            Comparador de comisiones ALYC
-          </h1>
-          <p className="mt-3 max-w-2xl text-base leading-7 text-zinc-600">
-            Listado de brokers con links a sus tarifarios oficiales y
-            comparación de comisiones por instrumento.
-          </p>
-        </div>
-      </div>
+      <HeroSection />
 
       <main className="mx-auto w-full max-w-5xl flex-1 space-y-12 px-4 py-8 sm:px-6">
         <section>
