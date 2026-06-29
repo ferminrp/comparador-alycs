@@ -110,7 +110,7 @@ export function ComparisonTable() {
         <table className="w-full min-w-[600px] text-sm">
           <thead>
             <tr className="border-b border-zinc-200 bg-zinc-50">
-              <th className="sticky left-0 z-10 bg-zinc-50 px-4 py-3 text-left font-medium text-zinc-700">
+              <th className="sticky left-0 z-20 border-r border-zinc-200 bg-zinc-50 px-4 py-3 text-left font-medium text-zinc-700">
                 Concepto
               </th>
               {selectedAlycs.map((alyc) => (
@@ -150,14 +150,13 @@ export function ComparisonTable() {
             </tr>
           </thead>
           <tbody>
-            {commissionConcepts.map((concept, idx) => (
-              <tr
-                key={concept.id}
-                className={
-                  idx % 2 === 0 ? "bg-white" : "bg-zinc-50/50"
-                }
-              >
-                <td className="sticky left-0 z-10 bg-inherit px-4 py-3 font-medium text-zinc-800">
+            {commissionConcepts.map((concept, idx) => {
+              const rowBg = idx % 2 === 0 ? "bg-white" : "bg-zinc-50";
+              return (
+              <tr key={concept.id} className={rowBg}>
+                <td
+                  className={`sticky left-0 z-10 border-r border-zinc-200 px-4 py-3 font-medium text-zinc-800 ${rowBg}`}
+                >
                   <span title={concept.description}>{concept.label}</span>
                 </td>
                 {selectedAlycs.map((alyc) => {
@@ -172,7 +171,8 @@ export function ComparisonTable() {
                   );
                 })}
               </tr>
-            ))}
+            );
+            })}
           </tbody>
         </table>
       </div>
