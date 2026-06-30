@@ -98,6 +98,15 @@ export default function Home() {
                         >
                           Web
                         </a>
+                        <span className="text-zinc-300" aria-hidden="true">
+                          ·
+                        </span>
+                        <Link
+                          href={`/alyc/${alyc.id}`}
+                          className="rounded-md px-2 py-1 font-medium text-emerald-700 transition-colors hover:bg-emerald-50 hover:text-emerald-800"
+                        >
+                          Reseñas
+                        </Link>
                       </div>
                     </td>
                   </tr>
