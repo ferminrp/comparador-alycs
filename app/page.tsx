@@ -3,6 +3,7 @@ import { AlycLogo } from "@/components/AlycLogo";
 import { CommissionCalculator } from "@/components/CommissionCalculator";
 import { ComparisonTable } from "@/components/ComparisonTable";
 import { HeroSection } from "@/components/HeroSection";
+import { FeaturedComparisons } from "@/components/RelatedLinks";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { alycs } from "@/lib/alycs";
@@ -15,7 +16,7 @@ export default function Home() {
       <HeroSection />
 
       <main className="mx-auto w-full max-w-5xl flex-1 space-y-12 px-4 py-8 sm:px-6">
-        <section>
+        <section id="brokers" className="scroll-mt-8">
           <h2 className="mb-4 text-xl font-semibold text-zinc-900">
             Brokers disponibles
           </h2>
@@ -55,9 +56,12 @@ export default function Home() {
                           className="shrink-0"
                         />
                         <div className="flex min-w-0 flex-wrap items-center gap-2">
-                          <span className="font-medium text-zinc-900">
+                          <Link
+                            href={`/${alyc.id}`}
+                            className="font-medium text-zinc-900 transition-colors hover:text-emerald-700"
+                          >
                             {alyc.name}
-                          </span>
+                          </Link>
                           <span className="rounded-full bg-zinc-100 px-2 py-0.5 text-xs font-medium text-zinc-600">
                             {alyc.shortName}
                           </span>
@@ -113,6 +117,8 @@ export default function Home() {
         </section>
 
         <ComparisonTable />
+
+        <FeaturedComparisons />
 
         <CommissionCalculator />
       </main>

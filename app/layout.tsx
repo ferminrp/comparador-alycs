@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import { Providers } from "@/components/Providers";
+import { SITE_NAME, SITE_URL } from "@/lib/seo";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -20,9 +21,21 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "Comparador de comisiones ALYC | Argentina",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Comparador de comisiones ALYC | Argentina",
+    template: `%s | ${SITE_NAME}`,
+  },
   description:
     "Compará las comisiones y tarifarios de los principales brokers (ALYC) de Argentina.",
+  openGraph: {
+    siteName: SITE_NAME,
+    locale: "es_AR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export default function RootLayout({
