@@ -1,8 +1,10 @@
 "use client";
 
+import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { AlycLogo } from "@/components/AlycLogo";
 import { alycs, commissionConcepts } from "@/lib/alycs";
+import { getCanonicalComparisonSlug } from "@/lib/comparisons";
 import { formatCommission } from "@/lib/format-commission";
 import type { Alyc } from "@/lib/types";
 
@@ -176,6 +178,18 @@ export function ComparisonTable() {
           </tbody>
         </table>
       </div>
+
+      {selectedIds.length === 2 && selectedIds[0] !== selectedIds[1] && (
+        <p className="mt-4 text-sm">
+          <Link
+            href={`/${getCanonicalComparisonSlug(selectedIds[0], selectedIds[1])}`}
+            className="font-medium text-emerald-700 transition-colors hover:text-emerald-800"
+          >
+            Ver comparativa completa de {selectedAlycs[0]?.shortName} vs{" "}
+            {selectedAlycs[1]?.shortName}
+          </Link>
+        </p>
+      )}
     </section>
   );
 }

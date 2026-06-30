@@ -3,6 +3,7 @@ import { MobileNav } from "./MobileNav";
 
 const navLinks = [
   { href: "/", label: "Inicio" },
+  { href: "/#brokers", label: "Brokers" },
   { href: "/#comparar", label: "Comparar" },
   { href: "/#calculadora", label: "Calculadora" },
   { href: "/contacto", label: "Contacto" },
