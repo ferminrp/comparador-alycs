@@ -179,7 +179,7 @@ export function ComparisonTable() {
         </table>
       </div>
 
-      {selectedIds.length === 2 && (
+      {selectedIds.length === 2 && selectedIds[0] !== selectedIds[1] && (
         <p className="mt-4 text-sm">
           <Link
             href={`/${getCanonicalComparisonSlug(selectedIds[0], selectedIds[1])}`}

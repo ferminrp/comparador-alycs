@@ -92,7 +92,7 @@ export const FEATURED_COMPARISONS = [
   "iol-vs-ieb",
   "iol-vs-cocos",
   "iol-vs-ppi",
-  "cocos-vs-ppi",
+  "ppi-vs-cocos",
   "balanz-vs-ieb",
   "iol-vs-balanz",
 ] as const;
