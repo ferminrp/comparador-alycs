@@ -20,15 +20,26 @@ npm install
 npm run dev
 ```
 
-## Build estático
+El sitio corre en http://localhost:3000. Para reseñas y login con X necesitás configurar las variables de entorno (ver `.env.example`).
 
-El proyecto usa `output: "export"` para generar HTML estático y minimizar costos en Vercel.
+## Build
 
 ```bash
 npm run build
+npm start
 ```
 
-La salida queda en `out/`.
+El proyecto usa rutas API (contacto, auth, reseñas) y requiere despliegue en modo servidor (por ejemplo Vercel), no export estático puro.
+
+## Reseñas de ALYCs
+
+Cada broker tiene una página `/alyc/[id]` donde los usuarios pueden leer y escribir reseñas. Para publicar hay que iniciar sesión con X (Twitter) vía NextAuth. Las reseñas se guardan en Upstash Redis.
+
+Configuración necesaria:
+
+1. **X Developer Portal**: app con OAuth 2.0, callback `https://tu-dominio.com/api/auth/callback/twitter`
+2. **Upstash**: base Redis con REST API habilitada
+3. **AUTH_SECRET**: generá uno con `openssl rand -base64 32`
 
 ## Calculadora de comisiones
 

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AuthButton } from "./AuthButton";
 import { MobileNav } from "./MobileNav";
 
 const navLinks = [
@@ -27,8 +28,12 @@ export function SiteHeader() {
               {link.label}
             </Link>
           ))}
+          <AuthButton />
         </nav>
-        <MobileNav links={navLinks} />
+        <div className="flex items-center gap-2 md:hidden">
+          <AuthButton />
+          <MobileNav links={navLinks} />
+        </div>
       </div>
     </header>
   );

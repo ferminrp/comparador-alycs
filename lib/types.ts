@@ -31,3 +31,26 @@ export type AlycsData = {
   alycs: Alyc[];
   commissionConcepts: CommissionConcept[];
 };
+
+export type Review = {
+  id: string;
+  alycId: string;
+  userId: string;
+  userName: string;
+  userImage?: string;
+  rating: number;
+  body: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ReviewSummary = {
+  averageRating: number;
+  count: number;
+};
+
+export type ReviewsResponse = {
+  reviews: Review[];
+  summary: ReviewSummary;
+  total: number;
+};
