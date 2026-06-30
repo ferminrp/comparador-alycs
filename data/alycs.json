@@ -438,7 +438,7 @@
         },
         "cauciones": {
           "rate": 0.2,
-          "unit": "percent",
+          "unit": "tna",
           "notes": "Colocadora, proporcional al plazo (base 30 días)",
           "source": "tarifario",
           "lastUpdated": "2026-06-30"
