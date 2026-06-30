@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import { Providers } from "@/components/Providers";
 import { SITE_NAME, SITE_URL } from "@/lib/seo";
@@ -49,6 +50,11 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-zinc-50 text-zinc-900">
+        <Script
+          src="https://analytics.ahrefs.com/analytics.js"
+          data-key="Uk/a6G7el3x/KoXpJp1eIA"
+          strategy="afterInteractive"
+        />
         <Providers>{children}</Providers>
       </body>
     </html>
