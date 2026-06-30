@@ -46,6 +46,10 @@ export async function PATCH(request: Request, context: RouteContext) {
       session.user.id,
       rating as number,
       reviewBody as string,
+      {
+        xUsername: session.user.username,
+        followersCount: session.user.followersCount,
+      },
     );
     return NextResponse.json({ review });
   } catch (error) {

@@ -38,6 +38,8 @@ export type Review = {
   userId: string;
   userName: string;
   userImage?: string;
+  userXUsername?: string;
+  userFollowersCount?: number;
   rating: number;
   body: string;
   createdAt: string;

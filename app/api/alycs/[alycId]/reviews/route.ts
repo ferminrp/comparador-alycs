@@ -108,6 +108,8 @@ export async function POST(request: Request, context: RouteContext) {
         id: session.user.id,
         name: session.user.name,
         image: session.user.image,
+        xUsername: session.user.username,
+        followersCount: session.user.followersCount,
       },
       rating as number,
       reviewBody as string,
