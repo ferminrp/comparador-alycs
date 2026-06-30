@@ -398,6 +398,61 @@
         "dolarMep": null,
         "suscripcionMensual": null
       }
+    },
+    {
+      "id": "allaria",
+      "name": "Allaria",
+      "shortName": "Allaria",
+      "domain": "allaria.com.ar",
+      "tarifarioUrl": "https://allaria.com.ar/doc/ArancelesComisiones.pdf",
+      "websiteUrl": "https://allaria.com.ar",
+      "notes": "Operatoria con autogestión (web sin asesor).",
+      "commissions": {
+        "accionesCedears": {
+          "rate": 0.5,
+          "unit": "percent",
+          "notes": "Hasta 0,50%",
+          "source": "tarifario",
+          "lastUpdated": "2026-06-30"
+        },
+        "bonosPublicos": {
+          "rate": 0.25,
+          "unit": "percent",
+          "notes": "Hasta 0,25%",
+          "source": "tarifario",
+          "lastUpdated": "2026-06-30"
+        },
+        "bonosPrivados": {
+          "rate": 1.5,
+          "unit": "percent",
+          "notes": "ON, F. Financieros, VCP",
+          "source": "tarifario",
+          "lastUpdated": "2026-06-30"
+        },
+        "opciones": {
+          "rate": 0.6,
+          "unit": "percent",
+          "notes": "Hasta 0,60%",
+          "source": "tarifario",
+          "lastUpdated": "2026-06-30"
+        },
+        "cauciones": {
+          "rate": 0.2,
+          "unit": "percent",
+          "notes": "Colocadora, proporcional al plazo (base 30 días)",
+          "source": "tarifario",
+          "lastUpdated": "2026-06-30"
+        },
+        "fondosComunes": {
+          "rate": 0,
+          "unit": "percent",
+          "notes": "Sin comisión en suscripción/rescate",
+          "source": "tarifario",
+          "lastUpdated": "2026-06-30"
+        },
+        "dolarMep": null,
+        "suscripcionMensual": null
+      }
     }
   ]
 }
