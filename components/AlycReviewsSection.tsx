@@ -18,6 +18,7 @@ export function AlycReviewsSection({ alycId }: AlycReviewsSectionProps) {
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [ownReview, setOwnReview] = useState<Review | undefined>();
   const [editingReview, setEditingReview] = useState<Review | null>(null);
   const [deletingId, setDeletingId] = useState<string | null>(null);
 
@@ -37,6 +38,7 @@ export function AlycReviewsSection({ alycId }: AlycReviewsSectionProps) {
       setReviews(data.reviews);
       setSummary(data.summary);
       setTotal(data.total);
+      setOwnReview(data.ownReview ?? undefined);
     } catch {
       setError("Error de red al cargar las reseñas.");
     } finally {
@@ -47,10 +49,6 @@ export function AlycReviewsSection({ alycId }: AlycReviewsSectionProps) {
   useEffect(() => {
     void loadReviews();
   }, [loadReviews]);
-
-  const ownReview = session?.user?.id
-    ? reviews.find((review) => review.userId === session.user!.id)
-    : undefined;
 
   async function handleDelete(reviewId: string) {
     if (!confirm("¿Eliminar tu reseña?")) return;
@@ -70,6 +68,7 @@ export function AlycReviewsSection({ alycId }: AlycReviewsSectionProps) {
 
       await loadReviews();
       setEditingReview(null);
+      setOwnReview(undefined);
     } catch {
       alert("Error de red al eliminar la reseña.");
     } finally {
@@ -79,6 +78,7 @@ export function AlycReviewsSection({ alycId }: AlycReviewsSectionProps) {
 
   function handleReviewSuccess(review: Review) {
     setEditingReview(null);
+    setOwnReview(review);
     setReviews((current) => {
       const exists = current.some((item) => item.id === review.id);
       if (exists) {

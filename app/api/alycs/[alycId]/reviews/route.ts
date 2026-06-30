@@ -4,9 +4,24 @@ import { getAlycById } from "@/lib/alycs";
 import { isRedisConfigured } from "@/lib/redis";
 import {
   createReview,
+  getUserReviewForAlyc,
   listReviewsByAlyc,
   validateReviewInput,
 } from "@/lib/reviews";
+
+function parseLimit(value: string | null): number {
+  if (value === null) return 20;
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed) || parsed < 1) return 20;
+  return Math.min(Math.floor(parsed), 50);
+}
+
+function parseOffset(value: string | null): number {
+  if (value === null) return 0;
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed) || parsed < 0) return 0;
+  return Math.floor(parsed);
+}
 
 type RouteContext = {
   params: Promise<{ alycId: string }>;
@@ -27,11 +42,16 @@ export async function GET(request: Request, context: RouteContext) {
   }
 
   const { searchParams } = new URL(request.url);
-  const limit = Math.min(Number(searchParams.get("limit") ?? 20), 50);
-  const offset = Math.max(Number(searchParams.get("offset") ?? 0), 0);
+  const limit = parseLimit(searchParams.get("limit"));
+  const offset = parseOffset(searchParams.get("offset"));
 
   try {
     const data = await listReviewsByAlyc(alycId, limit, offset);
+    const session = await auth();
+    if (session?.user?.id) {
+      const ownReview = await getUserReviewForAlyc(session.user.id, alycId);
+      return NextResponse.json({ ...data, ownReview });
+    }
     return NextResponse.json(data);
   } catch {
     return NextResponse.json(

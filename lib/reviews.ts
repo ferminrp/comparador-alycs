@@ -104,6 +104,18 @@ export async function getReviewById(id: string): Promise<Review | null> {
   return redis.get<Review>(reviewKey(id));
 }
 
+export async function getUserReviewForAlyc(
+  userId: string,
+  alycId: string,
+): Promise<Review | null> {
+  const redis = getRedis();
+  const reviewId = await redis.get<string>(userAlycReviewKey(userId, alycId));
+  if (!reviewId) {
+    return null;
+  }
+  return getReviewById(reviewId);
+}
+
 type ReviewAuthor = {
   id: string;
   name?: string | null;
@@ -117,12 +129,6 @@ export async function createReview(
   body: string,
 ): Promise<Review> {
   const redis = getRedis();
-  const existingId = await redis.get<string>(userAlycReviewKey(author.id, alycId));
-
-  if (existingId) {
-    throw new Error("Ya publicaste una reseña para esta ALYC.");
-  }
-
   const now = new Date().toISOString();
   const review: Review = {
     id: crypto.randomUUID(),
@@ -137,15 +143,25 @@ export async function createReview(
   };
 
   const score = Date.parse(now);
+  const userKey = userAlycReviewKey(author.id, alycId);
+  const claimed = await redis.set(userKey, review.id, { nx: true });
 
-  await redis
-    .pipeline()
-    .set(reviewKey(review.id), review)
-    .zadd(alycReviewsKey(alycId), { score, member: review.id })
-    .set(userAlycReviewKey(author.id, alycId), review.id)
-    .incrby(alycRatingSumKey(alycId), rating)
-    .incr(alycRatingCountKey(alycId))
-    .exec();
+  if (!claimed) {
+    throw new Error("Ya publicaste una reseña para esta ALYC.");
+  }
+
+  try {
+    await redis
+      .pipeline()
+      .set(reviewKey(review.id), review)
+      .zadd(alycReviewsKey(alycId), { score, member: review.id })
+      .incrby(alycRatingSumKey(alycId), rating)
+      .incr(alycRatingCountKey(alycId))
+      .exec();
+  } catch (error) {
+    await redis.del(userKey);
+    throw error;
+  }
 
   return review;
 }

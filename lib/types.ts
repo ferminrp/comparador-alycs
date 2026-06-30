@@ -53,4 +53,5 @@ export type ReviewsResponse = {
   reviews: Review[];
   summary: ReviewSummary;
   total: number;
+  ownReview?: Review | null;
 };
