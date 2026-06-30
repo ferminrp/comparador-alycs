@@ -116,10 +116,12 @@ export async function getUserReviewForAlyc(
   return getReviewById(reviewId);
 }
 
-type ReviewAuthor = {
+export type ReviewAuthor = {
   id: string;
   name?: string | null;
   image?: string | null;
+  xUsername?: string | null;
+  followersCount?: number | null;
 };
 
 export async function createReview(
@@ -136,6 +138,8 @@ export async function createReview(
     userId: author.id,
     userName: author.name ?? "Usuario de X",
     userImage: author.image ?? undefined,
+    userXUsername: author.xUsername ?? undefined,
+    userFollowersCount: author.followersCount ?? undefined,
     rating,
     body: body.trim(),
     createdAt: now,
@@ -171,6 +175,7 @@ export async function updateReview(
   userId: string,
   rating: number,
   body: string,
+  author?: Pick<ReviewAuthor, "xUsername" | "followersCount">,
 ): Promise<Review> {
   const redis = getRedis();
   const existing = await getReviewById(reviewId);
@@ -188,6 +193,12 @@ export async function updateReview(
     rating,
     body: body.trim(),
     updatedAt: new Date().toISOString(),
+    ...(author?.xUsername
+      ? { userXUsername: author.xUsername }
+      : {}),
+    ...(author?.followersCount != null
+      ? { userFollowersCount: author.followersCount }
+      : {}),
   };
 
   await redis
