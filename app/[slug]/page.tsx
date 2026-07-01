@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { AlycCommissionTable } from "@/components/AlycCommissionTable";
 import { AlycLogo } from "@/components/AlycLogo";
+import { AlycReviewsSection } from "@/components/AlycReviewsSection";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { FaqSection } from "@/components/FaqSection";
 import { JsonLd } from "@/components/JsonLd";
@@ -128,6 +129,10 @@ export default async function SlugPage({ params }: PageProps) {
 
           <div className="mb-10">
             <AlycRelatedLinks alyc={alyc} />
+          </div>
+
+          <div id="reseñas" className="mb-10 scroll-mt-20">
+            <AlycReviewsSection alycId={alyc.id} />
           </div>
 
           <FaqSection faqs={faqs} />

@@ -102,7 +102,7 @@ export default function Home() {
                           ·
                         </span>
                         <Link
-                          href={`/alyc/${alyc.id}`}
+                          href={`/${alyc.id}#reseñas`}
                           className="rounded-md px-2 py-1 font-medium text-emerald-700 transition-colors hover:bg-emerald-50 hover:text-emerald-800"
                         >
                           Reseñas

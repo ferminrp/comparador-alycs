@@ -25,7 +25,7 @@ function absoluteUrl(path: string): string {
 
 export function buildAlycMetadata(alyc: Alyc): Metadata {
   const title = `Comisiones ${alyc.shortName} ${CURRENT_YEAR}: tarifario y aranceles`;
-  const description = `Consultá las comisiones de ${alyc.name} en acciones, bonos, opciones, MEP y más. Datos del tarifario oficial actualizado. Compará con otros brokers de Argentina.`;
+  const description = `Consultá las comisiones de ${alyc.name} en acciones, bonos, opciones, MEP y más. Datos del tarifario oficial actualizado. Leé reseñas de usuarios y compará con otros brokers de Argentina.`;
   const path = `/${alyc.id}`;
 
   return {
