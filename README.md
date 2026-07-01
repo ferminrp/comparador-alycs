@@ -33,7 +33,7 @@ El proyecto usa rutas API (contacto, auth, reseñas) y requiere despliegue en mo
 
 ## Reseñas de ALYCs
 
-Cada broker tiene una página `/alyc/[id]` donde los usuarios pueden leer y escribir reseñas. Para publicar hay que iniciar sesión con X (Twitter) vía NextAuth. Las reseñas se guardan en Upstash Redis.
+Cada broker tiene una sección de reseñas en `/${id}#reseñas` (por ejemplo `/iol#reseñas`). Las URLs antiguas `/alyc/[id]` redirigen permanentemente a `/${id}`. Para publicar hay que iniciar sesión con X (Twitter) vía NextAuth. Las reseñas se guardan en Upstash Redis.
 
 ### Configurar X (Twitter) Developer Portal
 
