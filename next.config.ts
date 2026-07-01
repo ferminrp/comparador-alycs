@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
   async redirects() {
     return alycsData.alycs.map((alyc) => ({
       source: `/alyc/${alyc.id}`,
-      destination: `/${alyc.id}`,
+      destination: `/${alyc.id}#reseñas`,
       permanent: true,
     }));
   },
